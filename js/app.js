@@ -71,6 +71,8 @@ function sectionActiveView() {
 } 
 
 // Scroll to anchor ID using scrollTO event
+
+//from https://www.w3docs.com/snippets/javascript/how-to-create-smooth-scrolling-when-clicking-an-anchor-link.html
 function youSeeMeScrollin() {
     let section_anchor = document.querySelector('#section');
     section_anchor.scrollIntoView({
