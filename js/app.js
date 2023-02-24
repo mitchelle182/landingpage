@@ -53,21 +53,33 @@ function navBuild() {
 navBuild();
  
 // Add class 'active' to section when near top of viewport
+
+//I know I definitely wrote this wrong but this is me writing out my thought process 
 function sectionActiveView() {
         for (section of sections){
             let active_section = section.getBoundingClientRect();        
-            section.style.cssText = 'top: 0; left: 0';
-           
-            section.classList.add('your-active-class');
+            if(active_section.style.top = 0 & active_section.style.left = 0;) {
+                section.classList.add('your-active-class');
+
+            }else {
+                section.classList.remove('your-active-class');
+            }
+               
         }
        
            
-};
+} 
 
 // Scroll to anchor ID using scrollTO event
 function youSeeMeScrollin() {
+    let section_anchor = document.querySelector('#section');
+    section_anchor.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth',
+        inline: 'start'
 
-};
+    });
+}
 
 /**
  * End Main Functions
