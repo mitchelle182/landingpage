@@ -30,8 +30,9 @@ let navbar_list_num = sections.length;
  * Start Helper Functions
  * 
 */
+// navBuild function is to dynamically build the navigation bar at the top of the page. It populates every time a new section is added to the HTML page
 function navBuild() {
-    for (section of sections){
+    for (const section of sections){
         let section_num = section.getAttribute('data-nav');
         let section_id = section.getAttribute('id');
         let navbar_item = document.createElement('li');
@@ -39,7 +40,7 @@ function navBuild() {
         navbar_list.appendChild(navbar_item);
     }
 
-};
+}
 
 
 
@@ -54,34 +55,25 @@ navBuild();
  
 // Add class 'active' to section when near top of viewport
 
-//I know I definitely wrote this wrong but this is me writing out my thought process 
+//sectionActiveView function is to highlight section that appears in the viewport
 function sectionActiveView() {
-        for (section of sections){
-            let active_section = section.getBoundingClientRect();        
-            if(active_section.style.top = 0 & active_section.style.left = 0;) {
-                section.classList.add('your-active-class');
-
-            }else {
-                section.classList.remove('your-active-class');
-            }
-               
+    for (const section of sections){
+        const rect = section.getBoundingClientRect();  
+        if (rect.top < 100 && rect.bottom > 200) {
+            section.classList.add('your-active-class');
+        }else {
+            section.classList.remove('your-active-class');
         }
+   
        
-           
-} 
+    }
+}
+sectionActiveView();
+
 
 // Scroll to anchor ID using scrollTO event
 
-//from https://www.w3docs.com/snippets/javascript/how-to-create-smooth-scrolling-when-clicking-an-anchor-link.html
-function youSeeMeScrollin() {
-    let section_anchor = document.querySelector('#section');
-    section_anchor.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
-        inline: 'start'
 
-    });
-}
 
 /**
  * End Main Functions
@@ -92,6 +84,6 @@ function youSeeMeScrollin() {
 // Build menu 
 
 // Scroll to section on link click
-document.addEventListener('scroll', youSeeMeScrollin);
-// Set sections as active
+document.addEventListener("scroll", sectionActiveView);
+// // Set sections as active
 sectionActiveView();
