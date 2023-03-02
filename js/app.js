@@ -23,8 +23,8 @@
  * 
 */
 const sections = document.querySelectorAll('section');
-const navbar_list = document.getElementById('navbar__list');
-let navbar_list_num = sections.length;
+const navbarList = document.getElementById('navbar__list');
+let navbarListNum = sections.length;
 /**
  * End Global Variables
  * Start Helper Functions
@@ -33,11 +33,12 @@ let navbar_list_num = sections.length;
 // navBuild function is to dynamically build the navigation bar at the top of the page. It populates every time a new section is added to the HTML page
 function navBuild() {
     for (const section of sections){
-        let section_num = section.getAttribute('data-nav');
-        let section_id = section.getAttribute('id');
-        let navbar_item = document.createElement('li');
-        navbar_item.innerHTML += `<a href="#${section_id}">${section_num}</a>`;
-        navbar_list.appendChild(navbar_item);
+        let sectionNum = section.getAttribute('data-nav');
+        let sectionId = section.getAttribute('id');
+        let navbarItem = document.createElement('li');
+        navbarItem.id = `nav-item-${sectionId}`; 
+        navbarItem.innerHTML += `<a href="#${sectionId}">${sectionNum}</a>`;
+        navbarList.appendChild(navbarItem);
     }
 
 }
@@ -58,11 +59,16 @@ navBuild();
 //sectionActiveView function is to highlight section that appears in the viewport
 function sectionActiveView() {
     for (const section of sections){
-        const rect = section.getBoundingClientRect();  
+        const rect = section.getBoundingClientRect(); 
+        const navbarItemId = `nav-item-${section.id}`;
+        const navlink = document.getElementById(navbarItemId);
+
         if (rect.top < 100 && rect.bottom > 200) {
-            section.classList.add('your-active-class');
-        }else {
-            section.classList.remove('your-active-class');
+            section.classList.add('live-view');
+            navlink.classList.add('nav-link-active');
+        } else {
+            section.classList.remove('live-view');
+            navlink.classList.remove('nav-link-active');
         }
    
        
